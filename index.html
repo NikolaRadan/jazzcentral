@@ -1,159 +1,258 @@
+<!DOCTYPE html>
 <html>
+<head>
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+
+	<title></title>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+}
 body {
-   font-family: "Gilroy ExtraBold", system-ui, sans-serif;
-   font-style: normal;
-   font-weight: normal;
-   -webkit-font-smoothing: antialiased;
-   -webkit-font-kerning: normal;
-   -webkit-text-size-adjust: 100%;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
 }
- html, body {
-   width: 100vw;
-   height: 100vh;
+.header {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    background-color: #FC466B;
+    position: fixed;
+    height: 60px!important;
+    overflow: hidden;
+    z-index: 10;
 }
- body {
-   background: linear-gradient(45deg, #02001f, #1f1b4e);
-   transform-style: preserve-3d;
-   transform: perspective(60rem);
-   position: fixed;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+.main {
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    margin-top: 60px;
 }
- .Menu-list {
-   font-size: 4.25rem;
-   line-height: 1.2;
-   text-transform: uppercase;
-   text-align: center;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   transform: rotateX(-10deg) rotateY(20deg);
+.mainInner{
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
 }
- .Menu-list-item {
-   position: relative;
-   color: transparent;
-   cursor: pointer;
+.mainInner div{
+    display:table-cell;
+    vertical-align: middle;
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 1.25px;
 }
- .Menu-list-item::before {
-   content: '';
-   display: block;
-   position: absolute;
-   top: 49%;
-   left: -10%;
-   right: -10%;
-   height: 4px;
-   border-radius: 4px;
-   margin-top: -2px;
-   background: #ff2c75;
-   transform: scale(0);
-   transition: transform 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
-   z-index: 1;
+#sidebarMenu {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    margin-top: 60px;
+    transform: translateX(-250px);
+    transition: transform 250ms ease-in-out;
+    background: linear-gradient(180deg, #FC466B 0%, #3F5EFB 100%);
 }
- .Mask {
-   display: block;
-   position: absolute;
-   overflow: hidden;
-   color: #ff2c75;
-   top: 0;
-   height: 49%;
-   transition: all 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
+.sidebarMenuInner{
+    margin:0;
+    padding:0;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
 }
- .Mask span {
-   display: block;
+.sidebarMenuInner li{
+    list-style: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
- .Mask + .Mask {
-   top: 48.9%;
-   height: 51.1%;
+.sidebarMenuInner li span{
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.50);
 }
- .Mask + .Mask span {
-   transform: translateY(-49%);
+.sidebarMenuInner li a{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
 }
- .Menu-list-item:hover .Mask, .Menu-list-item:active .Mask {
-   color: #fff;
-   transform: skewX(12deg) translateX(5px);
+input[type="checkbox"]:checked ~ #sidebarMenu {
+    transform: translateX(0);
 }
- .Menu-list-item:hover .Mask + .Mask, .Menu-list-item:active .Mask + .Mask {
-   transform: skewX(12deg) translateX(-5px);
+
+input[type=checkbox] {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    display: none;
 }
- .Menu-list-item:hover::before, .Menu-list-item:active::before {
-   transform: scale(1);
+.sidebarIconToggle {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    top: 22px;
+    left: 15px;
+    height: 22px;
+    width: 22px;
+}
+.spinner {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+}
+.horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+.diagonal.part-1 {
+    position: relative;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    float: left;
+}
+.diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    opacity: 0;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(135deg);
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: -9px;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
 }
 
 </style>
 
+
+</head>
+
+
+
 <body>
-<div class="Menu">
-  <ul class="Menu-list" data-offset="10">
-    <li class="Menu-list-item" data-offset="8" >
-      Welcome To
-      <span class="Mask"><span>Welcome To</span></span>
-      <span class="Mask"><span>Welcome To</span></span>
-    </li>
-    <li class="Menu-list-item" href="HelpPage.html
-      " data-offset="20" >
-      Essay Hub
-      <span class="Mask" ><span>Essay Hub</span></span>
-      <span class="Mask"><span>Essay Hub</span></span>
-    </li>
-    <li class="Menu-list-item" data-offset="16" onclick="openWindow()">
-      Home
-      <span class="Mask"><span>Home</span></span>
-      <span class="Mask"><span>Home</span></span>
-    </li>
-    <li class="Menu-list-item" data-offset="16" onclick="openWindow()">
-      
-      <span class="Mask"><span></span></span>
-      <span class="Mask"><span></span></span>
-    </li>
-    
-    
-  </ul>
+<div class="topnav">
+  <a class="Home" href="index.html">__</a>
+  <a href="Me.html">About</a>
+  <a href="TIMELINES.html">Timelines</a>
 </div>
+
+<div class="header"></div>
+  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+  <div id="sidebarMenu">
+    <ul class="sidebarMenuInner">
+      <li>Pick a Timeline <span>Or Use The Nav</span></li>
+      <li><a href="https://vanila.io" target="_blank">1900</a></li>
+      <li><a href="https://instagram.com/plavookac" target="_blank">1910</a></li>
+      <li><a href="https://twitter.com/plavookac" target="_blank">1920</a></li>
+      <li><a href="https://www.youtube.com/channel/UCDfZM0IK6RBgud8HYGFXAJg" target="_blank">1930</a></li>
+      <li><a href="https://www.linkedin.com/in/plavookac/" target="_blank">1940</a></li>
+    </ul>
+  </div>
+  <div id='center' class="main center">
+
+    <div class="mainInner">
+
+      <div>THIS IS WHERE THE LOGO GOES</div>
+
+
+    </div>
+    <div class="center">
+
+      <div style="font-size: 20px">THIS IS WHERE THE OTHER CONTENT GOES</div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="IMG_20191026_084547_443.png" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>This be a random title</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
 
 </body>
 
 
-<script>
-var $menu = $('.Menu-list'),
-    $item = $('.Menu-list-item'),
-    w = $(window).width(), //window width
-    h = $(window).height(); //window height
+<script >
+	
 
-$(window).on('mousemove', function(e) {
-  var offsetX = 0.5 - e.pageX / w, //cursor position X
-      offsetY = 0.5 - e.pageY / h, //cursor position Y
-      dy = e.pageY - h / 2, //@h/2 = center of poster
-      dx = e.pageX - w / 2, //@w/2 = center of poster
-      theta = Math.atan2(dy, dx), //angle between cursor and center of poster in RAD
-      angle = theta * 180 / Math.PI - 90, //convert rad in degrees
-      offsetPoster = $menu.data('offset'),
-      transformPoster = 'translate3d(0, ' + -offsetX * offsetPoster + 'px, 0) rotateX(' + (-offsetY * offsetPoster) + 'deg) rotateY(' + (offsetX * (offsetPoster * 2)) + 'deg)'; //poster transform
-
-  //get angle between 0-360
-  if (angle < 0) {
-    angle = angle + 360;
-  }
-
-  //poster transform
-  $menu.css('transform', transformPoster);
-
-  //parallax for each layer
-  $item.each(function() {
-    var $this = $(this),
-        offsetLayer = $this.data('offset') || 0,
-        transformLayer = 'translate3d(' + offsetX * offsetLayer + 'px, ' + offsetY * offsetLayer + 'px, 20px)';
-
-    $this.css('transform', transformLayer);
-  });
-});
-
-function openWindow() {
-          window.open("https://nikolaradan.github.io/EssayHub/HomePagee.html")
-      }
 </script>
 
 </html>
