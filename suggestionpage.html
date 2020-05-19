@@ -1,0 +1,264 @@
+<html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+        <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Card Hover Effects</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
+<head>
+<style>
+  body{
+    background: #70DAA8;
+          transform-style: preserve-3d;
+          transform: perspective(60rem);
+          display: flex;
+          min-height: 100vh;
+          height: 700px
+          width:700px;
+
+          padding:0;
+          margin:0;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+}
+.nav-wrapper {
+          background-color: black;
+          width: 1450px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+
+</style>
+ </head> 
+<body>
+	
+<ul>
+  <div class="nav-wrapper">
+  <li><a class="active" href="https://nikolaradan.github.io/jazzcentral/anotherhome.html">Home</a></li>
+  <li><a href="https://nikolaradan.github.io/jazzcentral/timelinepage.html">Timelines</a></li>
+  <li><a href="https://nikolaradan.github.io/jazzcentral/contactpagefinal.html">Contact</a></li>
+  <li><a href="#about">Help</a></li>
+</ul>
+              
+              
+
+
+
+
+
+
+	    
+
+
+
+
+
+	<div class="container" style="background-color: lightgrey; width: 750px; min-height: 350px;">
+	<center>
+
+	<span style="font-size: 6vw; font-family: 'Josefin Sans', sans-serif;">Suggestions?</span> 
+<br>
+<span style="font-size: 3vw; font-family: 'Josefin Sans', sans-serif;">Let Us Know!</span> 
+<br>
+  <label class="name medium"> 
+<span style="font-family: 'Josefin Sans', sans-serif;">Enter your First Name:</span> 
+<input data-validation="length" data-validation-length="min2" id="FirstName" name="FirstName" placeholder="First Name" type="text" value="" /> <br> <br>
+</label> 
+
+
+<br>
+<label class="name medium"> 
+	<span style="font-family: 'Josefin Sans', sans-serif;">Enter your Last Name:</span> 
+	<input data-validation="length" data-validation-length="min2" id="LastName" name="LastName" placeholder="Last Name" type="text" value="" /> 
+</label> <label class="email medium"> 
+	<br><br> 
+  <span style="font-family: 'Josefin Sans', sans-serif;">Enter your E-mail:</span> 
+	<input data-validation="email" id="Email" name="Email" placeholder="email@website.com" type="text" value="" /> </label> <label class="phone medium">
+   <br><br>
+		<span style="font-family: 'Josefin Sans', sans-serif;">Enter your Phone:</span> <input data-validation-length="min2" id="Phone" name="Phone" placeholder="Your Phone" type="text" value="" /> </label>
+     <br> <br>
+     <label class="medium">
+		 <span style="font-family: 'Josefin Sans', sans-serif;">Message</span><textarea id="Notes" name="Notes" placeholder="Enter your message"></textarea> </label>
+      <br><br>
+
+<div class="clearfix">&nbsp;</div>
+
+<div class="margin-t-15"><button class="btn medium" onclick="pushData(), pushData2(), pushData3(), pushData4(), pushData5()" >Submit</button></div>
+
+
+</center>
+</div>
+</div>
+
+</body>
+
+<script>
+  // Your web app's Firebase configuration
+                   var firebaseConfig = {
+                    apiKey: "AIzaSyBFEFOY5Gz4lXjR4xK0V0RIlXQstKEc4Oc",
+                    authDomain: "basic-cdc91.firebaseapp.com",
+                    databaseURL: "https://basic-cdc91.firebaseio.com/",
+                    projectId: "basic-cdc91",
+                    storageBucket: "basic-cdc91.appspot.com",
+                    messagingSenderId: "97441529810",
+                    appId: "1:97441529810:web:831513caf97ca76bde920b",
+                    measurementId: "G-2SR539L1SK"
+                  };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+               
+        // Check to see if you are logged in
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user == null) {
+                //document.getElementById("uid").innerHTML = "not logged in";
+                return;
+            } else {
+                userId = user.uid; // you can also get .id .displayName, .photoURL, .email
+                username = user.displayName;
+                useremail = user.email;
+                userphoto = user.photoURL;
+
+                stealDetails()
+
+                document.getElementById("uname").innerHTML = username;
+
+
+function stealDetails() {
+  console.log(userId)
+  var js_time = new Date()
+  console.log(js_time)
+  firebase.database().ref('/details/' + userId).set({email: useremail, name: username, photo: userphoto}); 
+//{email: useremail, name: username, photo: userphoto, time: js_time}
+}
+
+
+                 // display Google uid on page
+
+
+
+
+                getData();
+                
+            } // end user null check
+        }); // end check auth state
+        
+
+	var myVar;
+
+
+        function pushData() {
+            //var userId = document.getElementById("uid").innerHTML;
+            var curtext = document.getElementById("Notes").value;
+            if (curtext == "" || curtext == null) {
+              alert("NO TEXT FILLED IN, please add text before you submit >:(")
+              document.getElementById("Notes").style.borderColor = "red"
+              document.getElementById("Notes").style.borderWidth = "5px"
+              return;
+            } else {
+              document.getElementById("Notes").style.borderColor = "green"
+            }
+
+        }  
+        function pushData2() {
+            //var userId = document.getElementById("uid").innerHTML;
+            var curtext = document.getElementById("FirstName").value;
+            if (curtext == "" || curtext == null) {
+              alert("NO TEXT FILLED IN, please add text before you submit your name>:(")
+              document.getElementById("FirstName").style.borderColor = "red"
+              document.getElementById("FirstName").style.borderWidth = "5px"
+              return;
+            } else {
+              document.getElementById("FirstName").style.borderColor = "green"
+            }
+
+        }  
+        function pushData3() {
+            //var userId = document.getElementById("uid").innerHTML;
+            var curtext = document.getElementById("LastName").value;
+            if (curtext == "" || curtext == null) {
+              alert("NO TEXT FILLED IN, please add text before you submit your name>:(")
+              document.getElementById("LastName").style.borderColor = "red"
+              document.getElementById("LastName").style.borderWidth = "5px"
+              return;
+            } else {
+              document.getElementById("LastName").style.borderColor = "green"
+            }
+
+        }  
+        function pushData4() {
+            //var userId = document.getElementById("uid").innerHTML;
+            var curtext = document.getElementById("Email").value;
+            if (curtext == "" || curtext == null) {
+              alert("NO TEXT FILLED IN, please add text before you submit your email>:(")
+              document.getElementById("Email").style.borderColor = "red"
+              document.getElementById("Email").style.borderWidth = "5px"
+              return;
+            } else {
+              document.getElementById("Email").style.borderColor = "green"
+            }
+
+        }  
+        function pushData5() {
+            //var userId = document.getElementById("uid").innerHTML;
+            var curtext = document.getElementById("Phone").value;
+            if (curtext == "" || curtext == null) {
+              alert("NO TEXT FILLED IN, please add text before you submit your number>:(")
+              document.getElementById("Phone").style.borderColor = "red"
+              document.getElementById("Phone").style.borderWidth = "5px"
+              return;
+            } else {
+              document.getElementById("Phone").style.borderColor = "green"
+              window.open("https://nikolaradan.github.io/EssayHub/ThankYouPage.html")
+            }
+
+        }  
+
+       
+
+</script>
+

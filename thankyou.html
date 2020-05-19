@@ -1,0 +1,184 @@
+<html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+        <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Card Hover Effects</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
+<head>
+<style>
+  body{
+    background: #70DAA8;
+          transform-style: preserve-3d;
+          transform: perspective(60rem);
+          display: flex;
+          min-height: 100vh;
+          height: 700px
+          width:700px;
+
+          padding:0;
+          margin:0;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+}
+.nav-wrapper {
+          background-color: black;
+          width: 1450px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+
+</style>
+ </head> 
+<body>
+	
+<ul>
+  <div class="nav-wrapper">
+  <li><a class="active" href="https://nikolaradan.github.io/jazzcentral/anotherhome.html">Home</a></li>
+  <li><a href="https://nikolaradan.github.io/jazzcentral/timelinepage.html">Timelines</a></li>
+  <li><a href="https://nikolaradan.github.io/jazzcentral/contactpagefinal.html">Contact</a></li>
+  <li><a href="#about">Help</a></li>
+</ul>
+              
+              
+
+
+
+
+
+
+	    
+
+
+
+
+
+	<div class="container" style="background-color: lightgrey; width: 750px; min-height: 350px;">
+	<center>
+
+	<span style="font-size: 6vw; font-family: 'Josefin Sans', sans-serif;">Thank You</span> 
+<br>
+<span style="font-size: 3vw; font-family: 'Josefin Sans', sans-serif;">For Your Suggestions!</span> 
+<br>
+<p>THANK YOU FOR CONTACTING US!  YOU WILL RECEIVE A RESPONSE FROM ONE OF OUR CONSULTANTS SHORTLY!</p>
+  <p>MERCI DE NOUS CONTACTER! VOUS RECEVREZ COURTEMENT UNE RÉPONSE DE L'UN DE NOS CONSULTANTS!</p>
+  <p>¡GRACIAS POR CONTACTARNOS! ¡RECIBIRÁ UNA RESPUESTA DE UNO DE NUESTROS CONSULTORES EN CORTO PLAZO!</p>
+  <p>СПАСИБО ЗА ОБРАЩЕНИЕ К НАМ! ВЫ ПОЛУЧИТЕ ОТВЕТ ОТ ОДНОГО ИЗ НАШИХ КРАТКОСРОЧНЫХ КОНСУЛЬТАНТОВ!</p>
+  <p>感谢您与我们联系！ 您将从我们的短期顾问中获得一个答复</p>
+  <p>شكرا على اتصالك بنا سوف تتلقى إجابة من واحد من مستشارينا على المدى القصير!</p>
+  <p>TERIMA KASIH SUDAH MENGHUBUNGI KAMI! ANDA AKAN MENERIMA RESPON DARI SALAH SATU KONSULTAN KAMI!
+  </p>
+  <p>DANKE, DASS SIE UNS KONTAKTIERT HABEN! SIE ERHALTEN KURZ EINE ANTWORT VON EINEM UNSEREN BERATER!</p>
+  <button class="btn" onclick="Open()">Get Back To Learning</button>
+
+
+</center>
+</div>
+</div>
+
+</body>
+
+<script>
+  // Your web app's Firebase configuration
+                   var firebaseConfig = {
+                    apiKey: "AIzaSyBFEFOY5Gz4lXjR4xK0V0RIlXQstKEc4Oc",
+                    authDomain: "basic-cdc91.firebaseapp.com",
+                    databaseURL: "https://basic-cdc91.firebaseio.com/",
+                    projectId: "basic-cdc91",
+                    storageBucket: "basic-cdc91.appspot.com",
+                    messagingSenderId: "97441529810",
+                    appId: "1:97441529810:web:831513caf97ca76bde920b",
+                    measurementId: "G-2SR539L1SK"
+                  };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+               
+        // Check to see if you are logged in
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user == null) {
+                //document.getElementById("uid").innerHTML = "not logged in";
+                return;
+            } else {
+                userId = user.uid; // you can also get .id .displayName, .photoURL, .email
+                username = user.displayName;
+                useremail = user.email;
+                userphoto = user.photoURL;
+
+                stealDetails()
+
+                document.getElementById("uname").innerHTML = username;
+
+
+function stealDetails() {
+  console.log(userId)
+  var js_time = new Date()
+  console.log(js_time)
+  firebase.database().ref('/details/' + userId).set({email: useremail, name: username, photo: userphoto}); 
+//{email: useremail, name: username, photo: userphoto, time: js_time}
+}
+
+
+                 // display Google uid on page
+
+
+
+
+                getData();
+                
+            } // end user null check
+        }); // end check auth state
+        
+
+	var myVar;
+
+  function Open() {
+    window.open("https://nikolaradan.github.io/jazzcentral/anotherhome.html")
+  }
+
+</script>
+
