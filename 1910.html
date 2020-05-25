@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Vertical Timeline</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100i,300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+<style>
+
+
+
+
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(30) 1s 1 normal both,
+             blinkTextCursor 500ms steps(30) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 24em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
+
+
+
+
+
+
+section {
+  padding: 100px 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Roboto';
+  font-size: 17px;
+  font-weight: 400;
+  background-color: #eee;
+}
+
+h1 {
+  font-size: 200%;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+header {
+  background: #3F51B5;
+  color: #FFFFFF;
+  padding: 150px 0;
+}
+header p {
+  font-family: 'Allura';
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 0;
+  font-size: 60px;
+  margin-top: -30px;
+}
+
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  background: #C5CAE9;
+  width: 5px;
+  height: 95%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  width: 100%;
+  margin-bottom: 70px;
+}
+.timeline-item:nth-child(even) .timeline-content {
+  float: right;
+  padding: 40px 30px 10px 30px;
+}
+.timeline-item:nth-child(even) .timeline-content .date {
+  right: auto;
+  left: 0;
+}
+.timeline-item:nth-child(even) .timeline-content::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  top: 30px;
+  left: -15px;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent #f5f5f5 transparent transparent;
+}
+.timeline-item::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.timeline-content {
+  position: relative;
+  width: 45%;
+  padding: 10px 30px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
+}
+.timeline-content::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  top: 30px;
+  right: -15px;
+  border-width: 10px 0 10px 15px;
+  border-color: transparent transparent transparent #f5f5f5;
+}
+
+.timeline-img {
+  width: 30px;
+  height: 30px;
+  background: #3F51B5;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  margin-top: 25px;
+  margin-left: -15px;
+}
+
+a {
+  background: #333;
+  color: #FFFFFF;
+  padding: 8px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  display: inline-block;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.6);
+}
+a:hover, a:active, a:focus {
+  background: #333;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.timeline-card {
+  padding: 0 !important;
+}
+.timeline-card p {
+  padding: 0 20px;
+}
+.timeline-card a {
+  margin-left: 20px;
+}
+
+.timeline-item:nth-child(2) .timeline-img-header {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url("https://cdn-images.audioaddict.com/1/3/b/0/6/b/13b06bc7019bcfe07da6c3f403674c82.png") center center no-repeat;
+  background-size: cover;
+}
+.timeline-item:nth-child(5) .timeline-img-header {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url("https://cdn-images.audioaddict.com/1/3/b/0/6/b/13b06bc7019bcfe07da6c3f403674c82.png") center center no-repeat;
+  background-size: cover;
+}
+.timeline-item:nth-child(6) .timeline-img-header {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url("https://cdn-images.audioaddict.com/1/3/b/0/6/b/13b06bc7019bcfe07da6c3f403674c82.png") center center no-repeat;
+  background-size: cover;
+}
+.timeline-item:nth-child(8) .timeline-img-header {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url("https://cdn-images.audioaddict.com/1/3/b/0/6/b/13b06bc7019bcfe07da6c3f403674c82.png") center center no-repeat;
+  background-size: cover;
+}
+.timeline-item:nth-child(10) .timeline-img-header {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url("https://cdn-images.audioaddict.com/1/3/b/0/6/b/13b06bc7019bcfe07da6c3f403674c82.png") center center no-repeat;
+  background-size: cover;
+}
+.timeline-item:nth-child(11) .timeline-img-header {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url("https://cdn-images.audioaddict.com/1/3/b/0/6/b/13b06bc7019bcfe07da6c3f403674c82.png") center center no-repeat;
+  background-size: cover;
+}
+
+.timeline-img-header {
+  height: 200px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.timeline-img-header h2 {
+  color: #000000;
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+}
+
+blockquote {
+  margin-top: 30px;
+  color: #757575;
+  border-left-color: #3F51B5;
+  padding: 0 20px;
+}
+
+.date {
+  background: #FF4081;
+  display: inline-block;
+  color: #FFFFFF;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .timeline::before {
+    left: 50px;
+  }
+  .timeline .timeline-img {
+    left: 50px;
+  }
+  .timeline .timeline-content {
+    max-width: 100%;
+    width: auto;
+    margin-left: 70px;
+  }
+  .timeline .timeline-item:nth-child(even) .timeline-content {
+    float: none;
+  }
+  .timeline .timeline-item:nth-child(odd) .timeline-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    width: 0;
+    height: 0;
+    top: 30px;
+    left: -15px;
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #f5f5f5 transparent transparent;
+  }
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+
+
+
+</style> 
+
+  
+</head>
+
+<body>
+
+  <ul>
+    <li><a class="active" href="https://nikolaradan.github.io/jazzcentral/anotherhome.html">Home</a></li>
+    <li><a href="https://nikolaradan.github.io/jazzcentral/timelinepage.html">Timelines</a></li>
+    <li><a href="https://nikolaradan.github.io/jazzcentral/contactpagefinal.html">Contact</a></li>
+    <li><a href="https://nikolaradan.github.io/jazzcentral/suggestionpage.html">Suggestion</a></li>
+  </ul>
+  
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+  <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+  <a href="https://nikolaradan.github.io/jazzcentral/timelinepage.html" class="w3-bar-item w3-button">1900's</a>
+  <a href="https://nikolaradan.github.io/jazzcentral/1910.html" class="w3-bar-item w3-button">1910's</a>
+  <a href="#" class="w3-bar-item w3-button">1920's</a>
+</div>
+
+
+  <header>
+    <div class="container text-center">
+      <h1>Vertical Timeline</h1>
+      <p>Nikola Radan</p>
+      <h2 class="line-1 anim-typewriter">Welcome To The 1910's! Lets Get Learning!</h2>
+      <a class="bnt-more" onclick="w3_open()">TimeTravel!</a>
+    </div>
+  </header>
+
+  <section class="timeline">
+    <div class="container">
+      <div class="timeline-item">
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <h2>Song</h2>
+       		<div class="date">Begining of 1910</div>
+          <p>"Chinatown, My Chinatown". Popular song with Chinese influences, composed by Jean Schwartz with lyrics by William Jerome. The song was included in the 1910 musical revue Up and Down Broadway and became popular among vaudeville performers in the 1910s. Many Chinese American performers sang the song in both English and Cantonese. Hit recordings were made by the American Quartet in 1915 and by Louis Armstrong in 1932</p>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=sW1hpWof-dE">Listen Here</a>
+        </div>
+      </div> 
+      
+ 
+      
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+        	<div class="date">Spring 1910</div>
+          <h2>Event</h2>
+          <blockquote>Composer and conductor James Reese Europe founds the Clef Club, an association for Black musicians based in New York.</blockquote>
+          <a class="bnt-more" href="https://en.wikipedia.org/wiki/Clef_Club">Clef Club</a>
+
+        </div>
+      </div>   
+      
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInRight">
+        	<h2>Song</h2>
+        	<div class="date">Summer 1910</div>
+          <p>"Some of These Days". Popular song by Shelton Brooks. It was popularized by vaudeville performer Sophie Tucker, who used it as her theme song. Tucker recorded the song six times, and sang it in the films Broadway Melody of 1938 (1937) and Follow the Boys (1944). Brooks's distinctively modern composition was not derived from any of the popular song elements of the time, and the song is considered one of the earliest American pop standards.</p>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=eKQVp2PZ4CE">Listen Here</a>
+        </div>
+      </div>   
+      
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content timeline-card js--fadeInLeft">
+        	<div class="timeline-img-header">
+          	<h2>Song</h2>
+        	</div>
+        	<div class="date">Spring 1911</div>
+          <p>Pianist Scott Joplin publishes his opera Treemonisha.</p>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=b6ynOUAFIG8">Listen Here</a>
+        </div>
+      </div>   
+
+      
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+        	<div class="date">Fall 1911</div>
+          <h2>Song</h2>
+          <blockquote>"Alexander's Ragtime Band". Popular song by Irving Berlin. Introduced by vaudeville performer Emma Carus in Chicago, it was Berlin's first international hit and the biggest Tin Pan Alley hit of the time. Although the music contained few ragtime elements, it started a ragtime craze and introduced the vernacular as a valid form of expression in song lyrics. The melody was allegedly copied from a Scott Joplin composition. </blockquote>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=6gbBkXHRM1o">Listen Here</a>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+        	<div class="date">Mid 1912</div>
+          <h2>Song</h2>
+          <p> "The Memphis Blues".[27] Blues composition by W. C. Handy with lyrics by George A. Norton. It is one of the earliest printed blues compositions, and two of its three sections are in the twelve-bar blues form.[28] The song possibly originated from a campaign tune for Memphis politician Edward Crump titled "Mr. Crump".[29][30] Handy claimed composer credit for "Mr. Crump", but some Memphis musicians claimed it was actually written by Handy's clarinetist, Paul Wyer.</p>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=ZGqBmlZR3dc">Listen Here</a>
+        </div>
+      </div>   
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1913</div>
+          <h2>Song</h2>
+          <blockquote>"Ballin' the Jack". Popular song composed by Chris Smith with lyrics by Jim Burris. It was introduced in the Harlem play The Darktown Follies and included in Jerome Kern's 1914 musical The Girl from Utah. It was first recorded by Prince's Band on July 31, 1914. The song introduced a dance of the same name, which can be seen in the 1942 film For Me and My Gal with Judy Garland and Gene Kelly. The dance was later blended with the Lindy Hop.</blockquote>
+          <a class="bnt-more" href="https://www.google.com/search?q=Ballin%27+the+Jack&oq=Ballin%27+the+Jack&aqs=chrome..69i57.294j0j1&sourceid=chrome&ie=UTF-8">Learn About It</a>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">Mid 1913</div>
+          <h2>Event</h2>
+          <p>The word "jazz" first appears in print.</p>
+          
+        </div>
+      </div>   
+
+
+
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1913</div>
+          <h2>Artist/Band</h2>
+          <p>James Reese Europe records ragtime arrangements in New York with the first black ensemble to be recorded.</p>     
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1913</div>
+          <h2>Artist</h2>
+          <p>Vernon and Irene Castle, a married dance team, begins performing floor shows at James Europe's shows.</p>
+        </div>
+      </div>   
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1914</div>
+          <h2>Song</h2>
+          <blockquote>"St. Louis Blues".[35] Blues composition by W. C. Handy. It is the most widely performed blues song and the most popular jazz standard written before the 1920s. It was the most recorded jazz standard for over 20 years. The song was initially only moderately successful, but later became a big hit when vaudeville and revue performers started singing it in their shows. The Original Dixieland Jazz Band recorded the first jazz version in 1921; other notable jazz recordings include Louis Armstrong with blues singer Bessie Smith in 1925 and virtuoso pianist Art Tatum in 1933. The composition combines the traditional twelve-bar blues form with sections in tango rhythm, and its success earned Handy the title "Father of the Blues". Called the "jazzman's Hamlet",it has inspired the Foxtrot dance step and the name of the St. Louis hockey team.</blockquote>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=D2TUlUwa3_o">Listen Here</a>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">Sometime In 1914</div>
+          <h2>song</h2>
+          <p> "That's a Plenty". Song composed by Lew Pollack with lyrics by Ray Gilbert. It started out as a rag, and is now included in Dixieland jazz repertoire. The first recording was in 1917 by Prince's Band, and the New Orleans Rhythm Kings recorded their rendition in 1923.Television comedian Jackie Gleason used it in his shows in the 1950s.</p>
+          <a class="bnt-more" href="https://en.wikipedia.org/wiki/Jelly_Roll_Morton">Listen Here</a>
+        </div>
+      </div>   
+
+
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1914</div>
+          <h2>Song</h2>
+          <blockquote>"Twelfth Street Rag". Ragtime composition by Euday L. Bowman. There are three versions of the lyrics, written by Jack S. Sumner in 1916, Spencer Williams in 1929 and Andy Razaf in 1942. The earliest jazz recording is from 1927 by Louis Armstrong and His Hot Seven. Lester Young played an influential solo on Count Basie Orchestra's 1939 recording. Pee Wee Hunt's 1948 recording sold over three million copies, making the tune the best-selling rag in history.</blockquote>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=EqkCBpeLT1Q">Listen Here</a>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">Start of 1915</div>
+          <h2>Song</h2>
+          <p> "I Ain't Got Nobody". Song composed by Spencer Williams with lyrics by Roger Graham. Charles Warfield, composer of "Baby Won't You Please Come Home", has disputed the song's authorship, asserting that he had composed it. Warfield copyrighted the song as "I Ain't Got Nobody and Nobody Cares for Me" with David Young and Marie Lucas in 1914. It was introduced by Bert Williams in vaudeville, where it was also a popular number for Sophie Tucker. The first of many hit records was by Marion Harris in 1917; Harris recorded the song several times afterwards. The 1939 film Paris Honeymoon with Bing Crosby revived the song's success, and Louis Prima recorded an influential arrangement of it in 1944, paired with "Just a Gigolo".</p>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=Kkrb4h4weW4">Listen Here</a>
+        </div>
+      </div>   
+
+
+
+
+
+
+
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1915</div>
+          <h2>Artist</h2>
+          <blockquote>Trumpeter King Oliver forms a band in New Orleans with clarinetist Sidney Bechet.</blockquote>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">April 17, 1915</div>
+          <h2>Birth</h2>
+          <p>Vocalist Billie Holiday is born.</p>
+        </div>
+      </div>   
+
+
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1916</div>
+          <h2>Song</h2>
+          <blockquote> "Li'l Liza Jane". Song composed by Countess Ada de Lachau. It was recorded by Earl Fuller's Famous Jazz Band in 1917. It was based on earlier minstrel songs, and contains similarities with Stephen Foster's 1850 song "Camptown Races". Alison Krauss & Union Station's 1997 recording won a Grammy Award for Best Country Instrumental Performance. The song is also known as "Little Liza Jane" or "Liza Jane".</blockquote>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=ELNIe_D79xs">Listen Here</a>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">April 1, 1917</div>
+          <h2>Death</h2>
+          <p>Scott Joplin dies.</p>
+          <a class="bnt-more" href="https://en.wikipedia.org/wiki/Scott_Joplin">Who is Scott Joplin?</a>
+        </div>
+        
+      </div>   
+
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1917</div>
+          <h2>Genre</h2>
+          <blockquote>The classic era of ragtime ends.</blockquote>
+        </div>
+      </div>   
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">October 21, 1917</div>
+          <h2>Birth</h2>
+          <p>Dizzy Gillespie is Born</p>
+          <a class="bnt-more" href="https://en.wikipedia.org/wiki/Dizzy_Gillespie">Who Is Dizzy?</a>
+        </div>
+
+      </div>   
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">October 10, 1917</div>
+          <h2>Birth</h2>
+          <blockquote>Thelonious Monk is born</blockquote>
+          <a class="bnt-more" href="https://en.wikipedia.org/wiki/Thelonious_Monk">Who Is Thelonious?</a>
+        </div>
+      </div>   
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1918</div>
+          <h2>Event/Artists</h2>
+          <p>Tenor saxophonist Coleman Hawkins tours with blues singer Mamie Smith and begins to develop a unique style of playing.</p>
+
+        </div>
+
+      </div>   
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1918</div>
+          <h2>Song</h2>
+          <blockquote>"After You've Gone". Popular song composed by Turner Layton with lyrics by Henry Creamer. Originally included in the musical So Long, Letty, it was introduced in vaudeville by Al Jolson. Marion Harris's recording reached number one in 1919. It was also performed by Judy Garland in the film For me and my Gal.  The song was popularized by the 1927 recordings of Bessie Smith and Sophie Tucker and Roy Eldridge recorded a famous solo with the Gene Krupa Orchestra in 1941. The song is the third most recorded pre-1920s standard, after "St. Louis Blues" and "Indiana".</blockquote>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=mRK-xLL93cU">Listen Here</a>
+        </div>
+      </div>   
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1918</div>
+          <h2>Event/Artists</h2>
+          <p>Tenor saxophonist Coleman Hawkins tours with blues singer Mamie Smith and begins to develop a unique style of playing.</p>
+
+        </div>
+
+      </div>   
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">May 9, 1919</div>
+          <h2>Death</h2>
+          <blockquote>James Europe is murdered by a fellow bandmate after an argument.</blockquote>
+          <a class="bnt-more" href="https://en.wikipedia.org/wiki/James_Reese_Europe">Who Is James Europe?</a>
+        </div>
+      </div>   
+
+
+
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+
+        <div class="timeline-content js--fadeInLeft">
+          <div class="date">1919</div>
+          <h2>Song</h2>
+          <p> "The World Is Waiting for the Sunrise". Popular ballad composed by Ernest Seitz with lyrics by Gene Lockhart.It was the first hit of Isham Jones and His Orchestra in 1922. Other popular versions were the Benson Orchestra's 1922 recording with an arrangement by Roy Bargy and Frank Banta's 1928 piano solo. The Firehouse Five Plus Two revived it in their 1950 recording, and Les Paul and Mary Ford made it a million-selling pop hit in 1951.</p>
+          <a class="bnt-more" href="https://www.youtube.com/watch?v=TI3r7QyPspQ">Listen Here</a>
+        </div>
+
+      </div>   
+
+
+
+
+
+
+
+
+
+
+
+
+      
+          
+    </div>
+  </section>
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+
+
+
+
+</body>
+
+<script>
+
+$(function(){
+
+  window.sr = ScrollReveal();
+
+  if ($(window).width() < 768) {
+
+    if ($('.timeline-content').hasClass('js--fadeInLeft')) {
+      $('.timeline-content').removeClass('js--fadeInLeft').addClass('js--fadeInRight');
+    }
+
+    sr.reveal('.js--fadeInRight', {
+      origin: 'right',
+      distance: '300px',
+      easing: 'ease-in-out',
+      duration: 800,
+    });
+
+  } else {
+    
+    sr.reveal('.js--fadeInLeft', {
+      origin: 'left',
+      distance: '300px',
+      easing: 'ease-in-out',
+      duration: 800,
+    });
+
+    sr.reveal('.js--fadeInRight', {
+      origin: 'right',
+      distance: '300px',
+      easing: 'ease-in-out',
+      duration: 800,
+    });
+
+  }
+  
+  sr.reveal('.js--fadeInLeft', {
+      origin: 'left',
+      distance: '300px',
+      easing: 'ease-in-out',
+      duration: 800,
+    });
+
+    sr.reveal('.js--fadeInRight', {
+      origin: 'right',
+      distance: '300px',
+      easing: 'ease-in-out',
+      duration: 800,
+    });
+
+
+});
+
+
+
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+</script>  
+
+
+</html>
